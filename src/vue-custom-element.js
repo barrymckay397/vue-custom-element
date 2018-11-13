@@ -64,6 +64,10 @@ function install(Vue) {
        * @param value
        */
       attributeChangedCallback(name, oldValue, value) {
+        if (Array.isArray(options.whitelist) && options.whitelist.length && options.whitelist.indexOf(name) < 0) {
+          return;
+        }
+
         if (this.__vue_custom_element__ && typeof value !== 'undefined') {
           const nameCamelCase = camelize(name);
           typeof options.attributeChangedCallback === 'function' && options.attributeChangedCallback.call(this, name, oldValue, value);
