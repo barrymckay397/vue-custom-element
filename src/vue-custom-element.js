@@ -64,7 +64,11 @@ function install(Vue) {
        * @param value
        */
       attributeChangedCallback(name, oldValue, value) {
-        if (Array.isArray(options.whitelist) && options.whitelist.length && options.whitelist.indexOf(name) < 0) {
+        if (
+          Array.isArray(options.whitelist) &&
+          options.whitelist.length &&
+          options.whitelist.indexOf(name) < 0
+        ) {
           return;
         }
 
