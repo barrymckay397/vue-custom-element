@@ -70,7 +70,9 @@ function genConfig (opts) {
       replace({
         __VERSION__: version
       }),
-      babel()
+      babel({
+        exclude: 'node_modules/**'
+      })
     ]
   }
 

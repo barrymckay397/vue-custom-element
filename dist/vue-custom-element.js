@@ -16,9 +16,9 @@
 
 Object.setPrototypeOf = Object.setPrototypeOf || setPrototypeOf;
 
-function setPrototypeOf(obj, proto) {
+function setPrototypeOf (obj, proto) {
   obj.__proto__ = proto;
-  return obj;
+  return obj
 }
 
 var setPrototypeOf_1 = setPrototypeOf.bind(Object);
@@ -518,6 +518,10 @@ function install(Vue) {
         }, options.destroyTimeout || 3000);
       },
       attributeChangedCallback: function attributeChangedCallback(name, oldValue, value) {
+        if (Array.isArray(options.whitelist) && options.whitelist.length && options.whitelist.indexOf(name) < 0) {
+          return;
+        }
+
         if (this.__vue_custom_element__ && typeof value !== 'undefined') {
           var nameCamelCase = camelize(name);
           typeof options.attributeChangedCallback === 'function' && options.attributeChangedCallback.call(this, name, oldValue, value);
